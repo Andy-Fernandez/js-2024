@@ -48,6 +48,16 @@ user.isStudent = true;
 //   configurable: true
 // });
 
+// --- Let'ts make an example using Object.freeze, it make the object inmutable.
+console.log("########## INMUTALBE OBJECT ##########");
+const userInmutalbe = { ...user }
+user.newProperty = "This works";
+console.log(user);
+Object.freeze(userInmutalbe);
+userInmutalbe.newProperty = "This not works";
+console.log(userInmutalbe);
+
+
 // console.log(usert2);
 
 // 2.
@@ -164,3 +174,13 @@ Object.keys(user).forEach((key, index) => {
 })
 
 // Excercise 10:
+const userCopy = { ...user };
+const nameProperty = "name";
+userCopy[nameProperty] = "Pablin";
+console.log("User copy: ", userCopy[nameProperty]);
+console.log("User orig: ", user[nameProperty]);
+
+const anotherCopy = Object.assign(user);
+anotherCopy[nameProperty] = "Pablote";
+console.log("Anther copy: ", anotherCopy[nameProperty]);
+console.log("User orig: ", user[nameProperty]);
