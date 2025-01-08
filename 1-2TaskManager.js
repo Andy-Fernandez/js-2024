@@ -1,5 +1,5 @@
 class Task {
-  constructor ( description, status = true, dueDate = new Date()){
+  constructor ( description, status = false, dueDate = new Date()){
     this.description = description;
     this.status = status;
     this.dueDate = dueDate;
@@ -8,10 +8,10 @@ class Task {
 
 tasks = [];
 
-tasks.addTaks = function(description, dueDate){
+tasks.addTask = function(description, dueDate){
   // Here I have to validate date
   if(dueDate instanceof Date && !isNaN(dueDate.getTime())){
-    const task = new Task(description, true, dueDate);
+    const task = new Task(description, false, dueDate);
     tasks.push(task);
   } else { 
     throw new Error("Invalid date");
@@ -19,24 +19,29 @@ tasks.addTaks = function(description, dueDate){
 }
 
 tasks.markComplete = function(index){
+  if(typeof index !== "number" || index >= tasks.length || index < 0){ // Checkin if index is in taks lenght and check if index is a number
+    throw new Error("Invalid task index");
+  }
   tasks[index].status = !tasks[index].status;
 }
 
 tasks.listCompleteTasks = function(){
   let index = 1;
-  tasks.forEach(element => {
-    if(element.status){
-      console.log(`${index}. `, element);
-      index++;
+  tasks.forEach((task, index) => {
+    if(!task.status){
+      console.log(`${index + 1}. `, task);
     }
   });
 }
 
+
+
+
 // ########## TEST #############
 // Test 1: Add a task
-tasks.addTaks("Complete homework", new Date("2025-01-10"));
-tasks.addTaks("Buy groceries", new Date("2025-01-12"));
-tasks.addTaks("Read a book", new Date("2025-01-15"));
+tasks.addTask("Complete homework", new Date("2025-01-10"));
+tasks.addTask("Buy groceries", new Date("2025-01-12"));
+tasks.addTask("Read a book", new Date("2025-01-15"));
 
 console.log("Tasks after adding:");
 console.log(tasks);
@@ -57,7 +62,7 @@ tasks.listCompleteTasks();
 
 // Test 4: Add a task with an invalid date
 try {
-  tasks.addTaks("Invalid task", "not-a-date");
+  tasks.addTask("Invalid task", "not-a-date");
 } catch (e) {
   console.error("Error while adding invalid task:", e.message);
 }
