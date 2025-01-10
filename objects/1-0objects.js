@@ -65,7 +65,6 @@ console.log("\nNew property:");
 console.log("Is student: ", user.isStudent);
 
 // 3.
-
 console.log("\nAccessing the new property:");
 user.isStudent = false;
 console.log("Is student (dot notation):", user.isStudent);
