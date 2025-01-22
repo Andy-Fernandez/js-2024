@@ -1,12 +1,10 @@
-let number = 13;
+// 4.
+let array = [1,2,3];
 
-function myPure(number){
-  return number*2;
+function adds(array, item){
+  array.push(item);
 }
-console.log(myPure(number));
-myImpure();
-console.log(myPure(number));
 
-function myImpure (){
-  number += 12;
-}
+console.log(array);
+adds(array, 4);
+console.log(array);

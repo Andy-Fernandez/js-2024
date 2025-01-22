@@ -35,4 +35,33 @@ function myImpure (){
 }
 
 // 4.
-array
+let array = [1,2,3];
+
+function addsImpure(array, item){
+  array.push(item);
+}
+
+console.log(array);
+addsImpure(array, 4);
+console.log(array);
+
+/*Side Effects:
+Just is modifing a global variable...
+*/
+
+function addsPure(array, item){
+  let arrayInside = array.slice();
+  arrayInside.push(item);
+  return arrayInside;
+}
+
+console.log(array);
+let arrayInside = addsPure(array, 4);
+console.log(`These suppost to be differente: `,array, arrayInside);
+
+// 5.
+greet = (name) => `Hello ${name}!`;
+square = (num) => num*num;
+
+console.log(greet("Pablo"));
+console.log(square(2));
