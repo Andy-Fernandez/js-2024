@@ -37,9 +37,7 @@ function myImpure (){
 // 4.
 let array = [1,2,3];
 
-function addsImpure(array, item){
-  array.push(item);
-}
+addsImpure = (array, item) => array.push(item);
 
 console.log(array);
 addsImpure(array, 4);
@@ -49,19 +47,19 @@ console.log(array);
 Just is modifing a global variable...
 */
 
-function addsPure(array, item){
-  let arrayInside = array.slice();
-  arrayInside.push(item);
-  return arrayInside;
-}
+// function addPureClean(array, item){
+//   return [...array, item];
+// }
+addPureClean = (array, item) => [...array, item];
 
 console.log(array);
 let arrayInside = addsPure(array, 4);
 console.log(`These suppost to be differente: `,array, arrayInside);
 
 // 5.
-greet = (name) => `Hello ${name}!`;
+greet = (name = "Stranger") => `Hello ${name}!`;
 square = (num) => num*num;
 
 console.log(greet("Pablo"));
+console.log(greet());
 console.log(square(2));
