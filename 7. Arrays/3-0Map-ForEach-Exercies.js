@@ -75,5 +75,46 @@ const printBookDetails = (array) => array.forEach(element => {
 printBookDetails(books);
 
 // 8.
-const arryaString = ['Hola', 'Como', 'Estas', 'Hola', 'Como', 'estoy?'];
+const arrayString = ['Hola', 'Como', 'Estas', 'Hola', 'Como', 'estoy?'];
 
+const countWordFuntion = (array,word) => {
+  let countWord = 0;
+  array.forEach(element => {
+    if(element == word){
+      countWord++;
+    }
+  });
+  console.log(`La palabra se repide ${countWord} veces`);
+}
+
+countWordFuntion(arrayString, 'Hola');
+
+// Extra, find how many times each word reapeat
+const countWordsFuntion = (array) => {
+  let countWords = {};
+
+  arrayString.forEach( (element, index) =>{
+    if (countWords.hasOwnProperty(element)){
+      countWords[element] += 1;
+    } else {
+      countWords[element] = 1;
+    }
+  });
+  return countWords;
+}
+
+console.log(countWordsFuntion(arrayString))
+
+// 9.
+const anotherArray = ['Hi', 'this', 'is', 'another', 'array'];
+let elementsAndIndex = {};
+
+anotherArray.forEach((element, index) => elementsAndIndex[element] = index);
+
+console.log(elementsAndIndex);
+
+// 10.
+
+const anotherNumbresArray = [1,2,3,4,5];
+anotherNumbresArray.forEach((element, index) => anotherNumbresArray[index] *= 2 );
+console.log(anotherNumbresArray);

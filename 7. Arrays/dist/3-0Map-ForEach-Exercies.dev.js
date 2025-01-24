@@ -111,4 +111,43 @@ var printBookDetails = function printBookDetails(array) {
 
 printBookDetails(books); // 8.
 
-var arryaString = ['Hola', 'Como', 'Estas', 'Hola', 'Como', 'estoy?'];
+var arrayString = ['Hola', 'Como', 'Estas', 'Hola', 'Como', 'estoy?'];
+
+var countWordFuntion = function countWordFuntion(array, word) {
+  var countWord = 0;
+  array.forEach(function (element) {
+    if (element == word) {
+      countWord++;
+    }
+  });
+  console.log("La palabra se repide ".concat(countWord, " veces"));
+};
+
+countWordFuntion(arrayString, 'Hola'); // Extra, find how many times each word reapeat
+
+var countWordsFuntion = function countWordsFuntion(array) {
+  var countWords = {};
+  arrayString.forEach(function (element, index) {
+    if (countWords.hasOwnProperty(element)) {
+      countWords[element] += 1;
+    } else {
+      countWords[element] = 1;
+    }
+  });
+  return countWords;
+};
+
+console.log(countWordsFuntion(arrayString)); // 9.
+
+var anotherArray = ['Hi', 'this', 'is', 'another', 'array'];
+var elementsAndIndex = {};
+anotherArray.forEach(function (element, index) {
+  return elementsAndIndex[element] = index;
+});
+console.log(elementsAndIndex); // 10.
+
+var anotherNumbresArray = [1, 2, 3, 4, 5];
+anotherNumbresArray.forEach(function (element, index) {
+  return anotherNumbresArray[index] *= 2;
+});
+console.log(anotherNumbresArray);
