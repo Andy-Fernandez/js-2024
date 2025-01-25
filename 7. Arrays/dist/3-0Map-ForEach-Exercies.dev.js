@@ -6,24 +6,44 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// # Map()
+/*
+### Key difference between forEach and map:
+forEach does something to each item, but it doesn’t change or return a new array.
+map transforms the items and returns a new array with the changes.
+*/
+// forEach example
+var arr = [1, 2, 3, 4];
+arr.forEach(function (currentValue, index, array) {
+  console.log("Item: " + currentValue + " at index: " + index + " in array: " + array);
+  return currentValue * 2; // Returning the doubled value but doesn't change array or retun a new array.
+});
+console.log(arr); // map  example
+
+arr = [1, 2, 3, 4];
+var newArr = arr.map(function (currentValue, index, array) {
+  console.log("Item: " + currentValue + " at index: " + index + " in array: " + array);
+  return currentValue * 2; // Returning the doubled value
+});
+console.log(newArr); // Output: [2, 4, 6, 8]
+// ### Map() ###
 // 1.
+
 var array = [1, 2, 3, 4, 5];
 
-var dobleIt = function dobleIt(num) {
+var doubleIt = function doubleIt(num) {
   return num * 2;
 };
 
-var arrayDobled = array.map(dobleIt);
+var arrayDobled = array.map(doubleIt);
 console.log(arrayDobled); // 2.
 
 var strings = ["apple", "banana", "cherry"];
 
-var uppeCaseAll = function uppeCaseAll(word) {
+var upperCaseAll = function upperCaseAll(word) {
   return word.toUpperCase();
 };
 
-var upperStrings = strings.map(uppeCaseAll);
+var upperStrings = strings.map(upperCaseAll);
 console.log(upperStrings); // 3.
 
 var people = [{
@@ -66,12 +86,12 @@ var products = [{
   name: 'Mac',
   price: 100
 }, {
-  name: 'Iphone',
+  name: 'iPhone',
   price: 120
 }, {
   name: 'Mac',
   price: 90
-}]; // const addDescuntedPrice = product => {this.descountedPrice = product*0.1}; 
+}];
 
 var addDiscountedPrice = function addDiscountedPrice(product) {
   return _objectSpread({}, product, {
@@ -80,7 +100,7 @@ var addDiscountedPrice = function addDiscountedPrice(product) {
 };
 
 var updateProducts = products.map(addDiscountedPrice);
-console.log(updateProducts); // # forEach()
+console.log(updateProducts); // ### forEach() ###
 // 6.
 
 var numbers = [1, 2, 3, 4, 5];
@@ -139,15 +159,28 @@ var countWordsFuntion = function countWordsFuntion(array) {
 
 console.log(countWordsFuntion(arrayString)); // 9.
 
+var elementIndex = function elementIndex(array) {
+  var elementsAndIndex = {};
+  array.forEach(function (element, index) {
+    return elementsAndIndex[element] = index;
+  });
+  return elementsAndIndex;
+};
+
 var anotherArray = ['Hi', 'this', 'is', 'another', 'array'];
-var elementsAndIndex = {};
-anotherArray.forEach(function (element, index) {
-  return elementsAndIndex[element] = index;
-});
-console.log(elementsAndIndex); // 10.
+console.log(elementIndex(anotherArray)); // 10.
+
+var multplyArry = function multplyArry(array, multiplier) {
+  var newArray = [];
+  array.forEach(function (element) {
+    return newArray.push(element * multiplier);
+  });
+  return newArray;
+};
 
 var anotherNumbresArray = [1, 2, 3, 4, 5];
 anotherNumbresArray.forEach(function (element, index) {
   return anotherNumbresArray[index] *= 2;
 });
 console.log(anotherNumbresArray);
+console.log(multplyArry(anotherNumbresArray, 2));

@@ -1,18 +1,20 @@
 // ### Filter
-let array = new Array(20).fill(0);
-const fillArray = (array) => array.forEach((element, index) => {
-  array[index] = index + 1;
-});
+// Generating mi array [1,2,... 20];
 
-fillArray(array);
+let array = Array.from({ length: 20 }, (_,index) => index + 1);
 console.log(array);
 
 // 1.
 console.log(array.filter(num => num%2==0));
 
 // 2.
+const isLongerThanFiveChars = word => word.length > 5;
+const isLongerThan = (word, length) => word.length > length;
 let words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
-console.log(words.filter(word => word.length > 5));
+const longWords1 = words.filter(isLongerThanFiveChars)
+const longWords2 = words.filter(word => isLongerThan(word, 5));
+console.log(longWords1);
+console.log(longWords2);
 
 // 3.
 let people = [
@@ -21,7 +23,8 @@ let people = [
   { name: "Alice Johnson", age: 28 },
   { name: "Bob Brown", age: 35 }
 ];
-console.log(people.filter(person => person.age >= 18))
+const isLegalAge = person => person.age && person.age >= 18;
+console.log(people.filter(isLegalAge));
 
 // 4.
 let funnyStrings = [
@@ -34,7 +37,9 @@ let funnyStrings = [
   "Why don’t some couples go to the gym? Because some relationships don’t work out."
 ];
 
-console.log(funnyStrings.filter(string => string.includes("I")));
+const isInString = (string, word) => string.toLowerCase().includes(word.toLowerCase());
+const searchWord = "I'm";
+console.log(funnyStrings.filter(string => isInString(string, searchWord)));
 
 // 5.
 let products = [

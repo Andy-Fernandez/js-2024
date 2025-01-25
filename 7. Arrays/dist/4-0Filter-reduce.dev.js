@@ -1,25 +1,33 @@
 "use strict";
 
 // ### Filter
-var array = new Array(20).fill(0);
-
-var fillArray = function fillArray(array) {
-  return array.forEach(function (element, index) {
-    array[index] = index + 1;
-  });
-};
-
-fillArray(array);
+// Generating mi array [1,2,... 20];
+var array = Array.from({
+  length: 20
+}, function (_, index) {
+  return index + 1;
+});
 console.log(array); // 1.
 
 console.log(array.filter(function (num) {
   return num % 2 == 0;
 })); // 2.
 
-var words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
-console.log(words.filter(function (word) {
+var isLongerThanFiveChars = function isLongerThanFiveChars(word) {
   return word.length > 5;
-})); // 3.
+};
+
+var isLongerThan = function isLongerThan(word, length) {
+  return word.length > length;
+};
+
+var words = ["apple", "banana", "cherry", "date", "elderberry", "fig", "grape"];
+var longWords1 = words.filter(isLongerThanFiveChars);
+var longWords2 = words.filter(function (word) {
+  return isLongerThan(word, 5);
+});
+console.log(longWords1);
+console.log(longWords2); // 3.
 
 var people = [{
   name: "John Doe",
@@ -34,13 +42,22 @@ var people = [{
   name: "Bob Brown",
   age: 35
 }];
-console.log(people.filter(function (person) {
-  return person.age >= 18;
-})); // 4.
+
+var isLegalAge = function isLegalAge(person) {
+  return person.age && person.age >= 18;
+};
+
+console.log(people.filter(isLegalAge)); // 4.
 
 var funnyStrings = ["I'm not arguing, I'm just explaining why I'm right.", "I told my computer I needed a break, and now it won't stop sending me Kit-Kats.", "Why don't skeletons fight each other? They don't have the guts.", "I’m on a seafood diet. I see food and I eat it.", "Parallel lines have so much in common. It’s a shame they’ll never meet.", "I asked the librarian if the library had any books on paranoia. She whispered, 'They’re right behind you.'", "Why don’t some couples go to the gym? Because some relationships don’t work out."];
+
+var isInString = function isInString(string, word) {
+  return string.toLowerCase().includes(word.toLowerCase());
+};
+
+var searchWord = "I'm";
 console.log(funnyStrings.filter(function (string) {
-  return string.includes("I");
+  return isInString(string, searchWord);
 })); // 5.
 
 var products = [{
