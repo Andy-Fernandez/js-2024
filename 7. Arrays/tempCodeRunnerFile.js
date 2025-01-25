@@ -1,3 +1,4 @@
-const arryaString = ['Hola', 'Como', 'Estas', 'Hola', 'Como', 'estoy?'];
-
-console.log(arryaString['Hola']);
+array.forEach( element => {
+//   console.log(element);
+//   console.log('hi');
+// });
