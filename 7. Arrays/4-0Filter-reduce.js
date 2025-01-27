@@ -58,43 +58,55 @@ function reducer(accumulator, currentValue, index){
   console.log( `accumulator: ${accumulator}, currentValue: ${currentValue}, index: ${index}, returns: ${returns}`);
   return returns;
 }
+// index and array are optionals
 
 console.log("######### Reduce #########")
 console.log(array);
+console.log("6.",array.reduce((accumulator, currentValue ) => accumulator + currentValue, 0));
+const anotherReducer = () => (accumulator, currentValue) => accumulator + currentValue;
+console.log("6.",array.reduce(anotherReducer(), 0));
 
-console.log(array.reduce((accumulator = 0, currentValue, index) => {
-  accumulator = accumulator + currentValue;
-  return accumulator;
-}));
-
-const anotherReducer = () => (accumulator = 0, currentValue, index) => {
-  accumulator = accumulator + currentValue;
-  return accumulator;
-};
-
-// array.reduce(reducer);
 
 // 7.
 array = [[1, 2], [3, 4], [5, 6]];
-array.forEach((subArra, index) => {
-  array[index] = subArra.reduce(anotherReducer());
-});
+const newArray = array.map(subArra => subArra.reduce((accumulator, currentValue) => accumulator + currentValue));
+console.log("7.", newArray);
 
-console.log(array);
 
 // 8.
-array = ['apple', 'banana', 'apple', 'orange', 'apple'];
+const moreWords = ['apple', 'banana', 'apple', 'orange', 'apple'];
 
-
-const counterWords = {};
-array.reduce((accumulator, currentValue, index) => {
-  if(counterWords.hasOwnProperty(currentValue)){
-    counterWords[currentValue] += 1;
-    console.log(currentValue);
+const counterWords = moreWords.reduce((accumulator, currentValue) => {
+  if (accumulator[currentValue]){
+    accumulator[currentValue]++;
   } else {
-    counterWords[currentValue] = 1;
+    accumulator[currentValue] = 1;
   }
-},0) // If we don't set accumulator, it'll take first element of owr array
+  return accumulator;
+}, {}); // here is the trick, It must be inicialitaded ass and object
+console.log("8. ",counterWords)
 
-console.log(counterWords)
 
+// 9.
+const otherProducts = [
+  { name: "Product 1", price: 10.99, quantity: 5 },
+  { name: "Product 2", price: 15.49, quantity: 3 },
+  { name: "Product 3", price: 7.99, quantity: 12 },
+  { name: "Product 4", price: 25.00, quantity: 2 },
+  { name: "Product 5", price: 3.75, quantity: 20 }
+];
+
+const totalCost = otherProducts.reduce((accumulator, currentValue) => {
+  return accumulator + currentValue.price * currentValue.quantity;
+}, 0);
+console.log("9.",totalCost);
+
+// 10.
+const numbers = [1, 12, 54, 65, 34];
+const maximum = numbers.reduce((maximo, currentValue) => {
+  if (maximo < currentValue) {
+    maximo = currentValue
+  };
+  return maximo;
+}, 0)
+console.log("10.", maximum);

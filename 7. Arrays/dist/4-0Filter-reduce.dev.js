@@ -90,45 +90,77 @@ function reducer(accumulator, currentValue, index) {
   var returns = accumulator + currentValue;
   console.log("accumulator: ".concat(accumulator, ", currentValue: ").concat(currentValue, ", index: ").concat(index, ", returns: ").concat(returns));
   return returns;
-}
+} // index and array are optionals
+
 
 console.log("######### Reduce #########");
 console.log(array);
-console.log(array.reduce(function () {
-  var accumulator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-  var currentValue = arguments.length > 1 ? arguments[1] : undefined;
-  var index = arguments.length > 2 ? arguments[2] : undefined;
-  accumulator = accumulator + currentValue;
-  return accumulator;
-}));
+console.log("6.", array.reduce(function (accumulator, currentValue) {
+  return accumulator + currentValue;
+}, 0));
 
 var anotherReducer = function anotherReducer() {
-  return function () {
-    var accumulator = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
-    var currentValue = arguments.length > 1 ? arguments[1] : undefined;
-    var index = arguments.length > 2 ? arguments[2] : undefined;
-    accumulator = accumulator + currentValue;
-    return accumulator;
+  return function (accumulator, currentValue) {
+    return accumulator + currentValue;
   };
-}; // array.reduce(reducer);
-// 7.
+};
 
+console.log("6.", array.reduce(anotherReducer(), 0)); // 7.
 
 array = [[1, 2], [3, 4], [5, 6]];
-array.forEach(function (subArra, index) {
-  array[index] = subArra.reduce(anotherReducer());
+var newArray = array.map(function (subArra) {
+  return subArra.reduce(function (accumulator, currentValue) {
+    return accumulator + currentValue;
+  });
 });
-console.log(array); // 8.
+console.log("7.", newArray); // 8.
 
-array = ['apple', 'banana', 'apple', 'orange', 'apple'];
-var counterWords = {};
-array.reduce(function (accumulator, currentValue, index) {
-  if (counterWords.hasOwnProperty(currentValue)) {
-    counterWords[currentValue] += 1;
-    console.log(currentValue);
+var moreWords = ['apple', 'banana', 'apple', 'orange', 'apple'];
+var counterWords = moreWords.reduce(function (accumulator, currentValue) {
+  if (accumulator[currentValue]) {
+    accumulator[currentValue]++;
   } else {
-    counterWords[currentValue] = 1;
+    accumulator[currentValue] = 1;
   }
-}, 0); // If we don't set accumulator, it'll take first element of owr array
 
-console.log(counterWords);
+  return accumulator;
+}, {}); // here is the trick, It must be inicialitaded ass and object
+
+console.log("8. ", counterWords); // 9.
+
+var otherProducts = [{
+  name: "Product 1",
+  price: 10.99,
+  quantity: 5
+}, {
+  name: "Product 2",
+  price: 15.49,
+  quantity: 3
+}, {
+  name: "Product 3",
+  price: 7.99,
+  quantity: 12
+}, {
+  name: "Product 4",
+  price: 25.00,
+  quantity: 2
+}, {
+  name: "Product 5",
+  price: 3.75,
+  quantity: 20
+}];
+var totalCost = otherProducts.reduce(function (accumulator, currentValue) {
+  return accumulator + currentValue.price * currentValue.quantity;
+}, 0);
+console.log("9.", totalCost); // 10.
+
+var numbers = [1, 12, 54, 65, 34];
+var maximum = numbers.reduce(function (maximo, currentValue) {
+  if (maximo < currentValue) {
+    maximo = currentValue;
+  }
+
+  ;
+  return maximo;
+}, 0);
+console.log("10.", maximum);
