@@ -14,9 +14,7 @@ function findUser(userName, password) {
   var user = dataBase.find(function (user) {
     return user.userName === userName && user.password === password;
   });
-  var restult = false;
-  restult = typeof user !== 'undefined' ? true : false;
-  return restult;
+  return typeof user !== 'undefined' ? true : false;
 }
 
 function generateFakeUsers(numberOfUsers) {
@@ -57,14 +55,17 @@ console.log("Test 1: Generating 10 fake users...");
 generateFakeUsers(10);
 console.log("Fake users generated:", dataBase); // Test 2: Check if findUser works
 
-var testUser = dataBase[0];
+var testUser = dataBase[0]; // Here we get a user in data base
+
 console.log("Test 2: Finding user ".concat(testUser.userName, " with valid credentials..."));
 console.assert(findUser(testUser.userName, testUser.password) === true, "FAILED: User should exist with correct credentials.");
 console.log("Finding user with invalid credentials...");
-console.assert(findUser("InvalidUser", "InvalidPassword") === false, "FAILED: Invalid user should not be found."); // Test 3: Sign Up functionality
+console.assert(findUser("InvalidUser", "InvalidPassword") === false, // Pass a invalid user
+"FAILED: Invalid user should not be found."); // Test 3: Sign Up functionality
 
 console.log("Test 3: Signing up a new user...");
-var newUser = new User("NewUser", "NewPassword");
+var newUser = new User("NewUser", "NewPassword"); // Register a new user
+
 signUp(newUser.userName, newUser.password);
 console.assert(findUser(newUser.userName, newUser.password) === true, "FAILED: New user should be found after signing up.");
 console.log("Attempting to sign up the same user again...");

@@ -9,9 +9,7 @@ const dataBase = [];
 
 function findUser(userName, password){
   let user = dataBase.find(user => user.userName === userName && user.password === password);
-  let restult = false;
-  restult = typeof(user)!== 'undefined' ?  true : false;
-  return restult;
+  return typeof(user)!== 'undefined' ?  true : false;
 }
 
 function generateFakeUsers(numberOfUsers) {
@@ -52,7 +50,7 @@ generateFakeUsers(10);
 console.log("Fake users generated:", dataBase);
 
 // Test 2: Check if findUser works
-const testUser = dataBase[0];
+const testUser = dataBase[0]; // Here we get a user in data base
 console.log(`Test 2: Finding user ${testUser.userName} with valid credentials...`);
 console.assert(
   findUser(testUser.userName, testUser.password) === true,
@@ -61,13 +59,13 @@ console.assert(
 
 console.log("Finding user with invalid credentials...");
 console.assert(
-  findUser("InvalidUser", "InvalidPassword") === false,
+  findUser("InvalidUser", "InvalidPassword") === false, // Pass a invalid user
   "FAILED: Invalid user should not be found."
 );
 
 // Test 3: Sign Up functionality
 console.log("Test 3: Signing up a new user...");
-const newUser = new User("NewUser", "NewPassword");
+const newUser = new User("NewUser", "NewPassword"); // Register a new user
 signUp(newUser.userName, newUser.password);
 console.assert(
   findUser(newUser.userName, newUser.password) === true,
