@@ -25,22 +25,22 @@
 ---
 
 ### **Key Spread Operator Exercises**
-1. **Merge Two Arrays**:
+6. **Merge Two Arrays**:
    - Create two arrays of numbers.
    - Use the spread operator to merge them into a single array.
 
-2. **Copy an Array**:
+7. **Copy an Array**:
    - Create an array of strings.
    - Use the spread operator to create a shallow copy of the array.
 
-3. **Insert Elements into an Array**:
+8. **Insert Elements into an Array**:
    - Create an array of numbers.
    - Use the spread operator to insert new elements in the middle of the array.
 
-4. **Combine Multiple Arrays**:
+9. **Combine Multiple Arrays**:
    - Create three arrays of numbers.
    - Use the spread operator to combine all three into one.
 
-5. **Create a New Object with Added Properties**:
+10. **Create a New Object with Added Properties**:
    - Create an object representing a product with `name` and `price`.
    - Use the spread operator to add a new property `discountedPrice` without modifying the original object.

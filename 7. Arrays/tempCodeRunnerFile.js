@@ -1,4 +1,5 @@
-// Slice()
-// 1.
-const numbers = Array(10).from({length}, (_,10))
-console.log("1.",)
+const getPricePRoductWithDescount = (price, descount) => {
+  return price*((100-descount)/100)
+}
+
+console.log(getPricePRoductWithDescount(100, 10));
