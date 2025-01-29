@@ -1,3 +1,7 @@
+/* observaciones
+Usar promt para pedir los datos del usuario
+El timeLine no se refería a cuando entro el usuario, si no hace referencia a los post de los usuarios.
+*/
 class User {
   constructor(userName, password) {
     this.userName = userName,
@@ -20,12 +24,10 @@ function findUser(userName, password) {
   return  dataBase.some(user => user.userName === userName && user.password === password);
 }
 
-function showTimeLine(userName){
+function showTimeLine(userName){ // I could be simplest...
   let timeLineObject = timeLine.filter(timeLine => timeLine.userName === userName);
-  console.log("Time Line Object: ", timeLineObject);
   let timeLineArray = timeLineObject.map(register => register.timeStamp);
-  console.log("Time Line Array: ", timeLineArray);
-  return timeLineArray;
+  console.log("Your timeline is:", timeLineArray);
 }
 
 function generateFakeUsers(numberOfUsers) {
@@ -44,21 +46,22 @@ function login(userName, password) {
   if(findUser(userName, password)){
     console.log("Welcome!");
     timeLine.push(new TimeLine(userName));
-    console.log(showTimeLine(userName));
+    showTimeLine(userName);
   } else {
     console.log("User or password wrong!");
   }
 }
 
 function signUp(userName, password) {
-  if(!userName || !password){
+  if(!userName.trim() || !password.trim()){
     console.log("Username and password cannot be empty!");
     return;
   }
-  if(!dataBase.some(user => user.userName === user)){
+  if(!dataBase.some(user => user.userName === userName)){
     dataBase.push(new User(userName, password));
     timeLine.push(new TimeLine(userName));
     console.log("User signed up successfully!");
+    showTimeLine(userName);
   } else {
     console.log("User already exist!")
   }
@@ -103,8 +106,6 @@ signUp(newUser.userName, newUser.password); // Should display "User already exis
 
 // Test 4: Login functionality
 console.log("Test 4: Logging in with valid credentials...");
-login(testUser.userName, testUser.password); // Should display "Welcome!"
-login(testUser.userName, testUser.password); // Should display "Welcome!"
 login(testUser.userName, testUser.password); // Should display "Welcome!"
 
 console.log("Logging in with invalid credentials...");
