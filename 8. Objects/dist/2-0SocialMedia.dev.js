@@ -8,13 +8,34 @@ var User = function User(userName, password) {
   this.userName = userName, this.password = password;
 };
 
+var TimeLine = function TimeLine(userName) {
+  var timeStamp = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : new Date();
+
+  _classCallCheck(this, TimeLine);
+
+  this.userName = userName;
+  this.timeStamp = timeStamp;
+};
+
 var dataBase = [];
+var timeLine = []; // [{ userName: 'name', timeStamp: new Date()}]
 
 function findUser(userName, password) {
-  var user = dataBase.find(function (user) {
+  return dataBase.some(function (user) {
     return user.userName === userName && user.password === password;
   });
-  return typeof user !== 'undefined' ? true : false;
+}
+
+function showTimeLine(userName) {
+  var timeLineObject = timeLine.filter(function (timeLine) {
+    return timeLine.userName === userName;
+  });
+  console.log("Time Line Object: ", timeLineObject);
+  var timeLineArray = timeLineObject.map(function (register) {
+    return register.timeStamp;
+  });
+  console.log("Time Line Array: ", timeLineArray);
+  return timeLineArray;
 }
 
 function generateFakeUsers(numberOfUsers) {
@@ -34,14 +55,25 @@ function generateFakeUsers(numberOfUsers) {
 function login(userName, password) {
   if (findUser(userName, password)) {
     console.log("Welcome!");
+    timeLine.push(new TimeLine(userName));
+    console.log(showTimeLine(userName));
   } else {
     console.log("User or password wrong!");
   }
 }
 
 function signUp(userName, password) {
-  if (!findUser(userName, password)) {
+  if (!userName || !password) {
+    console.log("Username and password cannot be empty!");
+    return;
+  }
+
+  if (!dataBase.some(function (user) {
+    return user.userName === user;
+  })) {
     dataBase.push(new User(userName, password));
+    timeLine.push(new TimeLine(userName));
+    console.log("User signed up successfully!");
   } else {
     console.log("User already exist!");
   }
@@ -66,13 +98,18 @@ console.assert(findUser("InvalidUser", "InvalidPassword") === false, // Pass a i
 console.log("Test 3: Signing up a new user...");
 var newUser = new User("NewUser", "NewPassword"); // Register a new user
 
-signUp(newUser.userName, newUser.password);
+signUp(newUser.userName, newUser.password); // Should display "User signed up successfully!"
+
 console.assert(findUser(newUser.userName, newUser.password) === true, "FAILED: New user should be found after signing up.");
 console.log("Attempting to sign up the same user again...");
 signUp(newUser.userName, newUser.password); // Should display "User already exists!"
 // Test 4: Login functionality
 
 console.log("Test 4: Logging in with valid credentials...");
+login(testUser.userName, testUser.password); // Should display "Welcome!"
+
+login(testUser.userName, testUser.password); // Should display "Welcome!"
+
 login(testUser.userName, testUser.password); // Should display "Welcome!"
 
 console.log("Logging in with invalid credentials...");
