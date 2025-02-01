@@ -26,7 +26,7 @@ console.log(computer1);
 try{
   computer1 = new Computer("Mac 3", "Apple", new Date() ,12, 1);
 } catch(error){
-  console.log(error.message)
+  console.log('ERROR: ', error.message)
 }
 
 // Extra, if I want my object inmutalbe I can use freeze
@@ -35,7 +35,7 @@ try{
   computer1.name = "Mac 10";
   console.log(computer1);
 }catch(error){
-  console.error(error.message);
+  console.error('ERROR: ', error.message);
 }
 
 
