@@ -183,4 +183,58 @@ anotherNumbresArray.forEach(function (element, index) {
   return anotherNumbresArray[index] *= 2;
 });
 console.log(anotherNumbresArray);
-console.log(multplyArry(anotherNumbresArray, 2));
+console.log(multplyArry(anotherNumbresArray, 2)); // 11. Filter, Map and  Log:
+
+var numeros = [2, 4, 3, 5, 7, 8, 11, 13, 17, 18, 19, 23, 29, 31, 37, 41, 42, 43, 47, 53, 54, 59, 61, 62, 67, 71, 72];
+var doubleEvens = numeros.filter(function (numero) {
+  return numero % 2 === 0;
+}).map(function (pares) {
+  return pares * 2;
+});
+console.log("11.");
+doubleEvens.forEach(function (number) {
+  return console.log(number);
+}); // 12. Flatten and Map
+
+var array2D = [[1, 2], [3, 4], [5, 6]];
+var flatArray = array2D.flat();
+console.log("12.", flatArray); // 13. Log and Transform
+
+var latamAuthors = ["Gabriel García Márquez", "Jorge Luis Borges", "Isabel Allende", "Mario Vargas Llosa", "Pablo Neruda", "Julio Cortázar", "Carlos Fuentes"];
+latamAuthors.forEach(function (author) {
+  return console.log("".concat(author, ": ").concat(author.length));
+});
+var lengthArray = latamAuthors.map(function (author) {
+  return author.length;
+});
+console.log("13.", lengthArray); // 14. Update Invetory
+
+var booksStock = [{
+  book: "One Hundred Years of Solitude",
+  stock: 12
+}, {
+  book: "The Aleph",
+  stock: 7
+}, {
+  book: "The Time of the Hero",
+  stock: 5
+}, {
+  book: "Like Water for Chocolate",
+  stock: 9
+}, {
+  book: "The Kingdom of This World",
+  stock: 3
+}];
+booksStock.forEach(function (item) {
+  return console.log("\uD83D\uDCD6 Book: \"".concat(item.book, "\" | \uD83D\uDCE6 Stock: ").concat(item.stock));
+});
+
+var incrementStock = function incrementStock(productsStock, amount) {
+  return productsStock.map(function (product) {
+    return _objectSpread({}, product, {
+      stock: product.stock + amount
+    });
+  });
+};
+
+console.log("Updated Stock:", incrementStock(booksStock, 10));

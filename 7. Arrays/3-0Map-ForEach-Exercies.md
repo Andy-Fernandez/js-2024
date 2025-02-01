@@ -73,7 +73,7 @@ Here are some **map** and **forEach** exercises to help you practice and deepen 
     - Then, use `map()` to transform the array into an array of string lengths.
 
 14. **Update Inventory**:
-    - Create an array of objects, each with `product` and `stock`.
+    - Create an array of objects, each with `book` and `stock`.
     - Use `forEach()` to log current inventory.
     - Use `map()` to increase the `stock` of each product by 10.
 

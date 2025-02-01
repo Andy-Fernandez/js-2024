@@ -148,3 +148,48 @@ anotherNumbresArray.forEach((element, index) => anotherNumbresArray[index] *= 2 
 
 console.log(anotherNumbresArray);
 console.log(multplyArry(anotherNumbresArray,2));
+
+// 11. Filter, Map and  Log:
+const numeros = [2, 4,3, 5, 7, 8, 11, 13, 17, 18, 19, 23, 29, 31, 37, 41, 42, 43, 47, 53, 54, 59, 61, 62, 67, 71, 72];
+
+const doubleEvens = numeros
+  .filter(numero => numero%2===0)
+  .map(pares => pares*2);
+console.log("11.")
+doubleEvens.forEach((number) => console.log(number));
+
+// 12. Flatten and Map
+const array2D = [[1, 2], [3, 4], [5, 6]];
+const flatArray = array2D.flat();
+console.log("12.", flatArray);
+
+// 13. Log and Transform
+const latamAuthors = [
+  "Gabriel García Márquez",
+  "Jorge Luis Borges",
+  "Isabel Allende",
+  "Mario Vargas Llosa",
+  "Pablo Neruda",
+  "Julio Cortázar",
+  "Carlos Fuentes"
+]
+latamAuthors.forEach(author => console.log(`${author}: ${author.length}`));
+
+const lengthArray = latamAuthors.map(author => author.length);
+console.log("13.", lengthArray);
+
+// 14. Update Invetory
+const booksStock = [
+  { book: "One Hundred Years of Solitude", stock: 12 },
+  { book: "The Aleph", stock: 7 },
+  { book: "The Time of the Hero", stock: 5 },
+  { book: "Like Water for Chocolate", stock: 9 },
+  { book: "The Kingdom of This World", stock: 3 }
+];
+
+booksStock.forEach(item => console.log(`📖 Book: "${item.book}" | 📦 Stock: ${item.stock}`));
+
+const incrementStock = (productsStock, amount) => 
+  productsStock.map(product => ({ ...product, stock: product.stock + amount }));
+
+console.log("Updated Stock:", incrementStock(booksStock, 10));
