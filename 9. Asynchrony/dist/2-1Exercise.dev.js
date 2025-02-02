@@ -44,50 +44,45 @@ var fakeDatabase = [{
 
 function getUserByIdAndAdult(id) {
   return new Promise(function (resolve, reject) {
-    var user = fakeDatabase.find(function (user) {
-      return user.userId === id && isAdult(user.age);
-    });
+    setTimeout(function () {
+      var user = fakeDatabase.find(function (user) {
+        return user.userId === id;
+      });
 
-    if (user) {
-      resolve("User ".concat(id, " is found and adult with ").concat(user.age, "!"));
-    } else {
-      reject("User ".concat(id, " is not found or not adult!"));
-    }
+      if (user) {
+        resolve(user); // In this part I can pass my entery user and check his age after
+      } else {
+        reject(new Error("User ".concat(id, " is not found!")));
+      }
+    }, 1000);
   });
 }
-
-var isAdult = function isAdult(age) {
-  return age >= 18 ? true : false;
-};
 
 function fetchMultipleUsersAndFilterAdults(userIds) {
   return Promise.allSettled(userIds.map(function (id) {
     return getUserByIdAndAdult(id);
   })).then(function (results) {
-    //resutl = [{status, value}, {status, value}]
-    var someAdultsFound = false;
-    results.forEach(function (result) {
-      if (result.status === 'fulfilled') {
-        console.log("Found a user:", result.value);
-      } else {
-        console.log("Error:", result.reason.message);
-        someAdultsFound = true;
-      }
+    //resutl = [{status, value:{userId:, name:, age:}}, {status, value:{...}}]
+    // Get fulfilled users
+    var succesfulUsers = results.filter(function (result) {
+      return result.status === 'fulfilled';
+    }).map(function (result) {
+      return result.value;
+    }); // Resturn just altut users
+
+    var adults = succesfulUsers.filter(function (user) {
+      return user.age >= 18;
     });
 
-    if (someAdultsFound) {
-      return "Some adults found!";
+    if (adults.length > 0) {
+      return adults;
+    } else {
+      return "No adults found!";
     }
-
-    return "All adults found!";
   });
 }
 
-getUserByIdAndAdult(7).then(function (message) {
-  return console.log(message);
-})["catch"](function (message) {
-  return console.log(message);
-});
-fetchMultipleUsersAndFilterAdults([1, 2, 7]).then(function (message) {
+console.log("fetchMultipleUsersAndFilterAdults");
+fetchMultipleUsersAndFilterAdults([1, 2, 6, 7, 8, 10]).then(function (message) {
   return console.log("Last:", message);
 });

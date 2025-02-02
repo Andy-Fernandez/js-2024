@@ -27,41 +27,36 @@ const fakeDatabase = [
 
 function getUserByIdAndAdult(id){
   return new Promise((resolve, reject) => {
-    let user = fakeDatabase.find(user => user.userId === id && isAdult(user.age));
-    if (user){
-      resolve(`User ${id} is found and adult with ${user.age}!`);
-    } else {
-      reject(`User ${id} is not found or not adult!`);
-    }
+    setTimeout(() => {
+      const user = fakeDatabase.find(user => user.userId === id);
+      if (user){
+        resolve(user); // In this part I can pass my entery user and check his age after
+      } else {
+        reject(new Error(`User ${id} is not found!`));
+      }
+    }, 1000);
   })
 }
 
-const isAdult = (age) => age >= 18 ? true : false;
-
 function fetchMultipleUsersAndFilterAdults(userIds){
   return Promise.allSettled(userIds.map(id => getUserByIdAndAdult(id)))
-    .then( results => { //resutl = [{status, value}, {status, value}]
-      let someAdultsFound = false;
+    .then( results => { //resutl = [{status, value:{userId:, name:, age:}}, {status, value:{...}}]
+      // Get fulfilled users
+      const succesfulUsers = results
+        .filter(result => result.status === 'fulfilled')
+        .map(result => result.value);
 
-      results.forEach( result => {
-        if (result.status === 'fulfilled') {
-          console.log(`Found a user:`, result.value);
-        } else {
-          console.log(`Error:`, result.reason.message);
-          someAdultsFound = true;
-        }
-      })
+      // Resturn just altut users
+      const adults = succesfulUsers.filter(user => user.age >= 18);
 
-      if (someAdultsFound) {
-        return "Some adults found!";
+      if (adults.length > 0){
+        return adults;
+      } else {
+        return "No adults found!"
       }
-      return `All adults found!`;
     })
 }
 
-getUserByIdAndAdult(7)
-  .then(message => console.log(message))
-  .catch(message => console.log(message));
-
-fetchMultipleUsersAndFilterAdults([1,2,7])
-  .then(message => console.log("Last:",message));
+  console.log("fetchMultipleUsersAndFilterAdults");
+fetchMultipleUsersAndFilterAdults([1,2,6,7,8, 10])
+  .then(message => console.log("Last:",message))
