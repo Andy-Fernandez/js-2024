@@ -1,2 +1,3 @@
-fetchMultipleUsersAndFilterAdults([1,2,7])
-  .then(message => console.log("Last:",message));
+const transactionId = 123;
+console.log(typeof(transactionId));
+console.log(typeof(transactionId) === "number");
