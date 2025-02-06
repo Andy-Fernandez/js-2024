@@ -14,7 +14,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   text-align: center;
-  width: 300px;
+  width: auto;
 }
 
 h1 {
@@ -26,6 +26,7 @@ h1 {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  margin: 20px;
 }
 
 input, select, button {
@@ -56,4 +57,9 @@ p {
   font-size: 18px;
   font-weight: bold;
   color: #333;
+}
+
+.converters {
+  display: flex;
+  justify-content: space-between;
 }

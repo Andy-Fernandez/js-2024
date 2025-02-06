@@ -9,28 +9,72 @@
 <body>
     <div class="container">
         <h1>Currency Converter</h1>
-        <div class="converter">
-            <input type="number" id="amount" placeholder="Enter amount" value="100">
-            <div class="dropdowns">
-                <select id="fromCurrency">
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="JPY">JPY</option>
-                    <option value="GBP">GBP</option>
-                    <option value="AUD">AUD</option>
-                </select>
-                <span>to</span>
-                <select id="toCurrency">
-                    <option value="USD">USD</option>
-                    <option value="EUR">EUR</option>
-                    <option value="JPY">JPY</option>
-                    <option value="GBP">GBP</option>
-                    <option value="AUD">AUD</option>
-                </select>
+        <section class="converters">
+            <div class="converter">
+                <h2>
+                    <span>Multi-Currency Converter</span>
+                </h2>
+                <input type="number" id="amount" placeholder="Enter amount" value="100">
+                <div class="dropdowns">
+                    <select id="fromCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                    <span>to</span>
+                    <select id="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                    <select id="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                    <select id="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                </div>
+                <button id="convertBtn">Convert</button>
+                <p id="result">I'm result</p>
             </div>
-            <button id="convertBtn">Convert</button>
-            <p id="result">I'm result</p>
-        </div>
+            <div class="converter">
+                <h2>
+                    <span>Single conver</span>
+                </h2>
+                <input type="number" id="amount" placeholder="Enter amount" value="100">
+                <div class="dropdowns">
+                    <select id="fromCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                    <span>to</span>
+                    <select id="toCurrency">
+                        <option value="USD">USD</option>
+                        <option value="EUR">EUR</option>
+                        <option value="JPY">JPY</option>
+                        <option value="GBP">GBP</option>
+                        <option value="AUD">AUD</option>
+                    </select>
+                </div>
+                <button id="convertBtn">Convert</button>
+                <p id="result">I'm result</p>
+            </div>
+        </section>
     </div>
     <script type="module" src="./main.mjs"></script>
 </body>
