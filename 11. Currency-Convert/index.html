@@ -16,29 +16,7 @@
                 </h2>
                 <input type="number" class="amount" placeholder="Enter amount" value="100">
                 <div class="dropdowns">
-                    <select class="fromCurrency">
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="JPY">JPY</option>
-                        <option value="GBP">GBP</option>
-                        <option value="AUD">AUD</option>
-                    </select>
-                    <span>to</span>
-                    <select class="toCurrency">
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="JPY">JPY</option>
-                        <option value="GBP">GBP</option>
-                        <option value="AUD">AUD</option>
-                    </select>
-                    <select class="toCurrency">
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="JPY">JPY</option>
-                        <option value="GBP">GBP</option>
-                        <option value="AUD">AUD</option>
-                    </select>
-                    <select class="toCurrency">
+                    <select id="fromCurrencyMulti">
                         <option value="USD">USD</option>
                         <option value="EUR">EUR</option>
                         <option value="JPY">JPY</option>
@@ -46,8 +24,11 @@
                         <option value="AUD">AUD</option>
                     </select>
                 </div>
-                <button class="convertBtn">Convert</button>
-                <p class="result">I'm result</p>
+                <button id="convertBtnMulti">Convert</button>
+                <p id="resultUsd">USD: </p>
+                <p id="resultEur">EUR: </p>
+                <p id="resultJpy">JPY: </p>
+                <p id="resultGbp">GBP: </p>
             </div>
             <div class="converter">
                 <h2>
