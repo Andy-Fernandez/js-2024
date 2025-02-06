@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rick Sanchez Profile</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #1e1e2e;
+            color: #ffffff;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+            margin: 0;
+            padding: 2rem;
+        }
+
+        input, textarea, select, button {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px;
+            font-size: 1rem;
+        }
+
+        button:hover {
+            background: #0056b3;
+        }
+
+        .form-control {
+            margin: 0.5rem 0;
+        }
+
+        .posts {
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 1rem;
+            width: 100%;
+            max-width: 600px;
+        }
+
+        .post-item {
+            background: #2a2a3b;
+            border-radius: 6px;
+            border: 1px solid #444;
+            padding: 1rem;
+            color: #ddd;
+        }
+
+        .post-item h2 {
+            font-size: 1.2rem;
+            color: #61dafb;
+        }
+
+        .post-item p {
+            font-size: 0.9rem;
+            color: #bbb;
+        }
+
+        .post-item button {
+            background: #f72222;
+        }
+
+        .post-item button:hover {
+            background: #dd2929;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            max-width: 900px;
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: #2a2a3b;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 350px;
+        }
+
+        .card img {
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            border: 3px solid #61dafb;
+        }
+
+        .card h1 {
+            margin: 10px 0;
+            font-size: 24px;
+            color: #61dafb;
+        }
+
+        .card p {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+
+        .status {
+            font-weight: bold;
+            color: #4caf50;
+        }
+
+        .status.dead {
+            color: #f44336;
+        }
+
+        .status.unknown {
+            color: #ffc107;
+        }
+
+        .footer {
+            margin-top: 15px;
+            font-size: 12px;
+            opacity: 0.8;
+        }
+
+        @media (min-width: 600px) {
+            .posts {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 900px) {
+            .posts {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <section id="new-post">
+            <form>
+                <div class="form-control">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" />
+                </div>
+                <div class="form-control">
+                    <label for="content">Content</label>
+                    <textarea rows="3" id="content"></textarea>
+                </div>
+                <button type="submit">POST Content</button>
+            </form>
+        </section>
+
+        <section id="available-posts">
+            <button>GET Content</button>
+            <section id="posts-container" class="posts"></section>
+        </section>
+
+        <div class="card">
+          <img id="character-image" src="" alt="Character Image">
+          <h1 id="character-name"></h1>
+          <p><strong>Status:</strong> <span id="character-status" class="status"></span></p>
+          <p><strong>Species:</strong> <span id="character-species"></span></p>
+          <p><strong>Gender:</strong> <span id="character-gender"></span></p>
+          <p><strong>Origin:</strong> <a id="character-origin" href="#" target="_blank"></a></p>
+          <p><strong>Location:</strong> <a id="character-location" href="#" target="_blank"></a></p>
+          <div class="footer">Powered by Rick and Morty API</div>
+      </div>      
+    </div>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

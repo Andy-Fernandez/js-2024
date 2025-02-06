@@ -14,7 +14,7 @@ export async function runConverter() {
     const data = await fetchExchangeRates();
     const rates = data.conversion_rates;
 
-    const amount = 100; // Example amount
+    const amount = 100;
     const fromCurrency = "USD";
     const toCurrency = "EUR";
 

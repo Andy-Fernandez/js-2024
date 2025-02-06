@@ -17,10 +17,7 @@ export function setupEventListeners() {
         resultDiv.textContent = "Please enter a valid amount.";
         return;
       }
-      console.log(
-        amountNow, 
-        from, 
-        to)
+      
       const result = await convertSpecific(amountNow, from, to);
       resultDiv.textContent = result;
     } catch (error) {
