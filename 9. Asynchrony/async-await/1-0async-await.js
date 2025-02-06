@@ -17,3 +17,21 @@ async function fetchData() {
 }
 
 fetchData();
+
+// now lets use for - await - of
+
+const urls = [
+  "https://rickandmortyapi.com/api/character",
+  "https://rickandmortyapi.com/api/location",
+  "https://rickandmortyapi.com/api/episode"
+]
+
+async function fetchAllData(usrls) {
+  for await (const url of usrls) {
+    let response = await fetch(url);
+    let data =  await response.json();
+    console.log(data);
+  }
+}
+
+fetchAllData(urls);
