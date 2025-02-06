@@ -5,3 +5,9 @@ export async function fetchExchangeSpecificCurrency(fromCurrency, toCurrency) {
   const response = await fetch(url);
   return response.json();
 }
+
+export async function fetchCurrency(fromCurrency) {
+  const url = `https://v6.exchangerate-api.com/v6/${apiKey}/latest/${fromCurrency}`;
+  const response = await fetch(url);
+  return response.json();
+}

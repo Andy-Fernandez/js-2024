@@ -1,3 +1,3 @@
-const amount = getElmentById(amount)
-
-console.log(amount)
+multiCurrencyConverter('EUR')
+  .then((message) => console.log(message))
+  .catch((error) => console.error(error))
